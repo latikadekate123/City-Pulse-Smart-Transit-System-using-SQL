@@ -54,8 +54,6 @@ Edit `db_manager.py` with your PostgreSQL password.
 streamlit run app.py
 ```
 
-Open http://localhost:8501 and you're good to go!
-
 ## The Data
 
 Here's what's in the database:
