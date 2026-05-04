@@ -1,97 +1,96 @@
-# CityPulse - Smart Transit System 🚇
-
-Hey there! Welcome to CityPulse - my take on making public transit data actually useful and easy to understand.
-
-## What's This All About?
-
-Ever wished you could see real-time transit info that actually helps you plan your commute? That's exactly what I built here. CityPulse pulls together route data, service status, and travel patterns into one clean dashboard that both commuters and transit planners can actually use.
-
-I'm using real NYC MTA station data with 90 days of simulated trips, delays, and service updates to show how a modern transit analytics platform should work.
-
-## What Can You Do With It?
-
-**Route Explorer** - Browse all 15 NYC transit routes (subway lines 1-6, A/C/E/L/N/Q, and buses M15/M34/B41). Click on any route to see schedules, passenger counts, and delay info.
-
-**Travel Trends** - See how travel times change throughout the day and week. I track everything - from weather impacts to peak hour congestion.
-
-**Service Status** - Check which routes are active, delayed, under maintenance, or out of service right now. No more guessing if your train is running!
-
-**Analytics Dashboard** - Dig into the data with charts showing weather impacts, reliability trends, and performance metrics.
-
-## The Tech Stack
-
-I built this with:
-- **Python 3.13** for the backend logic
-- **PostgreSQL 17** to handle all the transit data
-- **Streamlit** for the web interface
-- **Plotly** for interactive charts
-- **Real NYC MTA data** from the official API
-
-## Getting It Running
-
-**1. Set up your database**
-```bash
-psql -U postgres -c "CREATE DATABASE citypulse;"
-psql -U postgres -d citypulse -f tablesCity.sql
+# 🚇 CityPulse — Smart Transit Analytics System
+ 
+> A full-stack data engineering and analytics platform for real-time NYC MTA transit intelligence
+ 
+[![Python](https://img.shields.io/badge/Python-3.10-blue)](https://python.org)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)](https://postgresql.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-App-red)](https://streamlit.io)
+ 
+---
+ 
+## 📌 Project Overview
+ 
+CityPulse is an end-to-end **transit data pipeline and interactive analytics dashboard** built using real-time NYC MTA API data. It enables users to explore delay patterns, station performance, and peak hour trends across the New York City subway system.
+ 
+**Problem:** Transit agencies lack easy-to-use tools to visualize delay patterns and performance across hundreds of stations in real time.  
+**Solution:** An automated ETL pipeline + interactive dashboard that ingests live transit data, stores it in a relational database, and surfaces actionable insights through visual analytics.
+ 
+---
+ 
+## 📊 Key Results & Highlights
+ 
+- 📡 Integrated **live MTA API** to ingest real-time subway delay and trip data
+- 🗄️ Designed a **10-table normalized PostgreSQL schema** covering trips, stations, delays, routes, and time dimensions
+- ⚡ Built automated **ETL pipeline** for continuous data ingestion and transformation
+- 📈 Identified **peak-hour delay clusters** across 50+ NYC stations through pattern analysis
+- 🖥️ Deployed interactive **Streamlit dashboard** with Plotly charts + Tableau visualizations
+- 🔍 Enabled filtering by line, station, time-of-day, and delay severity
+---
+ 
+## 🛠️ Tech Stack
+ 
+| Layer | Technology |
+|-------|-----------|
+| Data Ingestion | Python, MTA REST API |
+| Database | PostgreSQL (10-table normalized schema) |
+| Data Processing | Python, Pandas, SQLAlchemy |
+| Visualization | Streamlit, Plotly, Tableau |
+| Version Control | Git, GitHub |
+ 
+---
+ 
+## 🗂️ Project Architecture
+ 
 ```
-
-**2. Import the NYC transit data**
-```bash
-python import_mta_data.py
+MTA API → ETL Pipeline (Python) → PostgreSQL DB → Streamlit Dashboard
+                                       ↓
+                               Tableau Reports
 ```
-This pulls real station data from NYC MTA and generates realistic trip data for 50 stations across all 5 boroughs.
-
-**3. Install Python packages**
+ 
+---
+ 
+## 🚀 How to Run
+ 
 ```bash
+# Clone the repository
+git clone https://github.com/latikadekate123/City-Pulse-Smart-Transit-System-using-SQL.git
+cd City-Pulse-Smart-Transit-System-using-SQL
+ 
+# Install dependencies
 pip install -r requirements.txt
-```
-
-**4. Update database credentials**
-Edit `db_manager.py` with your PostgreSQL password.
-
-**5. Launch the dashboard**
-```bash
+ 
+# Set up PostgreSQL database
+psql -U postgres -f schema.sql
+ 
+# Run the Streamlit app
 streamlit run app.py
 ```
-
-## The Data
-
-Here's what's in the database:
-- **50 NYC Stations** - Real locations across Manhattan, Brooklyn, Queens, Bronx, and Staten Island
-- **15 Routes** - Mix of subway lines and bus routes
-- **11,000+ Trips** - 90 days of realistic travel patterns
-- **2,000 Fare Cards** - Regular, Student, and Senior passes
-- **Service Status** - 30 days of operational data with actual maintenance and delay reasons
-
-Everything's designed to feel realistic - peak hour traffic, weather delays, random maintenance windows, the works.
-
-## What I Learned
-
-This project taught me a lot about:
-- Working with real-world APIs (NYC MTA Open Data)
-- Designing normalized database schemas
-- Building responsive web dashboards
-- Creating meaningful data visualizations
-- Writing clean, maintainable Python code
-
-## Files Worth Checking Out
-
-- `app.py` - The main dashboard app
-- `db_manager.py` - All the database queries and connections
-- `import_mta_data.py` - Script that pulls MTA data and generates realistic transit records
-- `tablesCity.sql` - Database schema with 10 tables
-- `queriesCity.sql` - Sample analytics queries
-
-## Why I Built This
-
-I wanted to create something that shows I can work with real data sources, design relational databases, and build user-friendly interfaces. Plus, I'm genuinely interested in how cities can use data to improve public transportation.
-
-## Let's Connect
-
-I'm always happy to chat about data projects, SQL optimization, or transit systems!
-
-**GitHub**: latikadekate123
-
+ 
 ---
-
-*Note: While I'm using real NYC MTA station data, all trip records, delays, and service statuses are simulated for demonstration purposes.*
+ 
+## 📁 Repository Structure
+ 
+```
+├── data/               # Sample data and API response examples
+├── sql/                # Database schema and query files
+├── etl/                # Data ingestion and transformation scripts
+├── app.py              # Streamlit dashboard
+├── requirements.txt    # Python dependencies
+└── README.md
+```
+ 
+---
+ 
+## 💡 Key Learnings
+ 
+- Designing normalized relational schemas for time-series transit data
+- Building real-time API data pipelines with error handling and retries
+- Creating interactive dashboards that communicate complex patterns simply
+- Writing complex analytical SQL queries (window functions, CTEs, aggregations)
+---
+ 
+## 🔗 Links
+ 
+- 🔴 **Live Demo:** *(Add your Streamlit Cloud or Render link here)*
+- 📊 **Tableau Dashboard:** *(Add your Tableau Public link here)*
+- 💼 **LinkedIn:** [Latika Dekate](https://www.linkedin.com/in/latika-dekate/)
